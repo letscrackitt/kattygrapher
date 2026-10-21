@@ -23,7 +23,7 @@
 }</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&family=Pacifico&family=Patrick+Hand&family=Nunito:wght@400;600;700&family=Quicksand:wght@400;500;600;700&family=DM+Serif+Display&family=Great+Vibes&family=Sacramento&family=Comfortaa:wght@400;600;700&family=Baloo+2:wght@400;500;600;700&family=Amatic+SC:wght@700&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#3a2113; --ink-soft:#7a5438;
@@ -292,6 +292,160 @@ textarea.shake{animation:shake .4s}
   .cat,.dock,.panel,.tile,.fire-frame img,.face .q,.face .bbtn,.face .final,.face .photo{animation-duration:.01s!important; animation-delay:0s!important; animation-iteration-count:1!important}
   .confetti{display:none}
 }
+
+/* ---------- Kattygrapher pastel polish ---------- */
+#s2{overflow:hidden; isolation:isolate}
+.welcome-note{position:absolute;z-index:3;width:min(230px,23vw);padding:18px 17px 16px;color:#594353;border:1px solid rgba(116,76,104,.13);border-radius:5px 5px 13px 5px;box-shadow:0 12px 28px rgba(87,55,77,.13);font-family:"Patrick Hand","Caveat",cursive;font-size:clamp(15px,1.45vw,20px);line-height:1.35;pointer-events:none}
+.welcome-note:before{content:"";position:absolute;top:-8px;left:calc(50% - 29px);width:58px;height:17px;background:rgba(255,255,255,.62);transform:rotate(-3deg);box-shadow:0 1px 2px rgba(70,40,60,.06)}
+.welcome-note h2{font-family:"Fredoka",sans-serif;font-size:clamp(15px,1.5vw,20px);letter-spacing:.01em;margin:0 0 8px;color:#76506c}
+.welcome-note p{margin:0}
+.welcome-note .note-icon{display:block;font-family:system-ui,sans-serif;font-size:20px;margin-bottom:4px}
+.welcome-note.left{left:clamp(12px,4vw,58px);top:19%;background:linear-gradient(145deg,#fff0f4,#ffe2ec);transform:rotate(-4deg)}
+.welcome-note.right{right:clamp(12px,4vw,58px);top:31%;background:linear-gradient(145deg,#f1edff,#e7e2ff);transform:rotate(3.5deg)}
+.welcome-note.bottom{left:clamp(20px,11vw,155px);bottom:8%;width:min(205px,21vw);background:linear-gradient(145deg,#fff7d9,#ffedb0);transform:rotate(2deg)}
+.welcome-note .tiny-rule{height:1px;background:rgba(116,76,104,.2);margin:9px 0}
+.color-tools{margin:0 0 16px;padding:12px 13px 13px;border:1px solid #ead9e8;border-radius:17px;background:linear-gradient(135deg,#fff7fb,#f9f5ff)}
+.color-tools .color-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;font-weight:700;color:#694b66}
+.color-tools .color-heading small{font-size:.78rem;font-weight:500;color:#9b8296}
+.color-swatches{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.color-swatch{width:29px;height:29px;min-width:29px;border-radius:50%;border:2px solid rgba(71,48,67,.16);padding:0;cursor:pointer;position:relative;box-shadow:0 2px 5px rgba(62,39,61,.1);transition:transform .14s,box-shadow .14s}
+.color-swatch:hover{transform:translateY(-2px) scale(1.06)}
+.color-swatch[aria-pressed="true"]{outline:2px solid #8b6591;outline-offset:3px;box-shadow:0 0 0 5px rgba(177,142,187,.18)}
+.color-swatch[data-color="#ffffff"]{border:1px solid #cbbecb}
+.custom-color{width:36px;height:36px;padding:3px;border:1px dashed #bca3bf;border-radius:50%;background:#fff;cursor:pointer}
+.custom-color input{width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer;border-radius:50%}
+.fonts{gap:8px;margin-bottom:13px}
+.fonts .chip{font-size:.92rem;border-radius:999px;background:#fff9fd;border-color:#e6d4e5;color:#72566f;box-shadow:0 2px 0 #ead9e8}
+.fonts .chip[aria-checked="true"]{background:#efdff1;color:#583f5d;border-color:#c8a8ce;box-shadow:0 3px 0 #c8a8ce}
+.fonts .chip[data-font="hand"]{font-family:"Caveat",cursive;font-size:1.1rem}
+.fonts .chip[data-font="serif"],.fonts .chip[data-font="serif2"]{font-family:"Playfair Display",serif}
+@media(max-width:860px){
+ .welcome-note{width:clamp(128px,39vw,180px);padding:12px 11px;font-size:15px}
+ .welcome-note h2{font-size:15px}
+ .welcome-note.left{left:8px;top:10%;transform:rotate(-3deg)}
+ .welcome-note.right{right:7px;top:17%;transform:rotate(3deg)}
+ .welcome-note.bottom{left:10px;bottom:5%;width:clamp(130px,38vw,175px)}
+ #s2 .cat{height:min(72%,115vw)}
+ .color-swatches{gap:8px}
+ .color-swatch{width:27px;height:27px;min-width:27px}
+}
+@media(max-width:420px){.welcome-note.bottom{display:none}.welcome-note{font-size:14px}.welcome-note .note-icon{font-size:17px}}
+
+
+/* ---------- Cat sticky-note welcome screen ---------- */
+#s2{overflow:hidden;isolation:isolate}
+.welcome-title{position:absolute;z-index:5;top:5.5%;left:50%;transform:translateX(-50%);margin:0;display:flex;align-items:center;justify-content:center;gap:clamp(1px,.55vw,8px);white-space:nowrap;font-family:"Fredoka",sans-serif;font-weight:700;font-size:clamp(34px,5.4vw,76px);letter-spacing:.02em;color:#73565a;text-shadow:0 3px 0 #fff4cc,0 6px 0 rgba(108,76,83,.13)}
+.welcome-title span:nth-child(1),.welcome-title span:nth-child(4),.welcome-title span:nth-child(7){color:#f08aa8}
+.welcome-title span:nth-child(2),.welcome-title span:nth-child(5){color:#e5b95e}
+.welcome-title span:nth-child(3),.welcome-title span:nth-child(6){color:#86b9b6}
+.welcome-title .welcome-heart{font-size:.62em;color:#e78baa;margin-left:.08em;animation:welcomePulse 1.8s ease-in-out infinite}
+.welcome-subtitle{position:absolute;z-index:5;top:calc(5.5% + clamp(42px,6vw,80px));left:50%;transform:translateX(-50%);width:max-content;max-width:90%;text-align:center;margin:0;color:#80616d;font-family:"Patrick Hand","Caveat",cursive;font-size:clamp(15px,1.8vw,23px)}
+.sticky-art{position:absolute;z-index:2;margin:0;filter:drop-shadow(0 9px 9px rgba(72,49,58,.13));pointer-events:none}
+.sticky-art img{display:block;width:100%;height:100%;object-fit:contain}
+.sticky-art-one{width:clamp(150px,22vw,300px);left:1.5%;top:20%;transform:rotate(-5deg)}
+.sticky-art-two{width:clamp(150px,19vw,260px);right:2%;top:15%;transform:rotate(4deg)}
+.sticky-art-three{width:clamp(135px,18vw,245px);left:3%;bottom:3%;transform:rotate(4deg)}
+.sticky-art-four{width:clamp(100px,13vw,175px);right:5%;bottom:4%;transform:rotate(-6deg)}
+@keyframes welcomePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+@media(max-width:700px){
+ .welcome-title{top:4%;font-size:clamp(31px,9vw,54px)}
+ .welcome-subtitle{top:calc(4% + 43px);font-size:16px}
+ .sticky-art-one{width:36vw;left:-3%;top:16%}
+ .sticky-art-two{width:34vw;right:-3%;top:14%}
+ .sticky-art-three{width:31vw;left:-2%;bottom:1%}
+ .sticky-art-four{width:24vw;right:0;bottom:2%}
+}
+@media(max-height:650px) and (min-width:701px){
+ .welcome-title{top:2%;font-size:clamp(30px,4vw,52px)}
+ .welcome-subtitle{top:calc(2% + 48px)}
+ .sticky-art-one{top:17%;width:clamp(125px,17vw,220px)}
+ .sticky-art-two{top:14%;width:clamp(125px,15vw,205px)}
+ .sticky-art-three{width:clamp(110px,14vw,180px)}
+ .sticky-art-four{width:clamp(85px,10vw,130px)}
+}
+
+/* Friendly, useful sticky-note copy: designed to sit in the blank areas of the supplied artwork */
+.note-copy{position:absolute;z-index:4;display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;line-height:1.15;font-family:"Patrick Hand","Caveat",cursive;color:#51413e;text-wrap:balance;pointer-events:none}
+.note-copy strong{font-family:"Fredoka",sans-serif;font-weight:700;line-height:1.05}
+.note-copy span{font-size:clamp(11px,1.05vw,15px);line-height:1.18}
+.note-copy-one{left:13%;right:12%;top:25%;padding:0 3%}
+.note-copy-one strong{font-size:clamp(15px,1.45vw,21px);color:#5b6b3e}
+.note-copy-one span{max-width:95%}
+.note-copy-two{left:15%;right:14%;top:39%;padding:0 2%}
+.note-copy-two strong{font-size:clamp(14px,1.35vw,20px);color:#a86e63}
+.note-copy-two span{font-size:clamp(11px,1vw,14px);max-width:95%}
+.note-copy-three{left:21%;right:8%;top:27%;padding:0 2%}
+.note-copy-three strong{font-size:clamp(13px,1.3vw,19px);color:#377b83}
+.note-copy-three span{max-width:94%}
+.note-copy-four{left:20%;right:17%;top:48%;gap:4px}
+.note-copy-four strong{font-size:clamp(12px,1.1vw,16px);color:#fff0f3;text-shadow:0 1px 2px #322624}
+.note-copy-four span{font-size:clamp(10px,.9vw,13px);color:#fff0f3;text-shadow:0 1px 2px #322624}
+.board-welcome{display:flex;flex-direction:column;align-items:center;gap:5px;width:100%;color:#5a433e;line-height:1.1;margin-bottom:3px}
+.board-welcome strong{font-family:"Fredoka",sans-serif;font-size:clamp(15px,2vw,25px);font-weight:700;color:#77535b}
+.board-welcome span{font-family:"Patrick Hand","Caveat",cursive;font-size:clamp(12px,1.35vw,17px);font-weight:500}
+.board-welcome em{font-family:"Patrick Hand","Caveat",cursive;font-size:clamp(11px,1.15vw,15px);font-style:normal;color:#a56d78}
+.face{grid-template-rows:1fr auto;gap:4px}
+.face .bbtn{font-size:clamp(16px,2vw,24px);padding:7px 17px;border-width:3px;border-radius:13px;box-shadow:0 4px 0 #3a2113;letter-spacing:.02em;animation:pulse 1.8s 1.2s ease-in-out infinite}
+@media(max-width:700px){
+ .note-copy span{font-size:clamp(9px,2.2vw,12px)}
+ .note-copy-one{left:13%;right:12%;top:27%}
+ .note-copy-one strong{font-size:clamp(12px,3vw,16px)}
+ .note-copy-two{left:14%;right:14%;top:42%}
+ .note-copy-two strong{font-size:clamp(11px,2.8vw,15px)}
+ .note-copy-three{left:22%;right:8%;top:25%}
+ .note-copy-three strong{font-size:clamp(10px,2.7vw,14px)}
+ .note-copy-four{left:18%;right:16%;top:47%}
+ .note-copy-four strong{font-size:clamp(10px,2.5vw,13px)}
+ .note-copy-four span{font-size:clamp(8px,2vw,11px)}
+ .board-welcome{gap:3px}
+ .board-welcome strong{font-size:clamp(12px,3.2vw,18px)}
+ .board-welcome span{font-size:clamp(10px,2.6vw,14px)}
+ .board-welcome em{font-size:clamp(9px,2.3vw,12px)}
+ .face .bbtn{font-size:clamp(13px,3vw,18px);padding:5px 10px;border-width:2px}
+}
+
+
+/* Homepage refresh: cloud-shaped how-to tips, no sticky-note decorations */
+#s2{overflow:hidden;isolation:isolate}
+#s2 .welcome-title,#s2 .welcome-subtitle,#s2 .sticky-art{display:none!important}
+.cloud-tip{position:absolute;z-index:4;width:clamp(155px,19vw,235px);min-height:95px;padding:25px 20px 18px;text-align:center;color:#65505f;font-family:"Patrick Hand","Caveat",cursive;font-size:clamp(13px,1.25vw,17px);line-height:1.22;background:linear-gradient(145deg,#fff9fd 0%,#ffd9ec 100%);border:2px solid #f4a8cf;border-radius:42% 48% 43% 47% / 38% 43% 51% 50%;filter:drop-shadow(0 7px 8px rgba(91,64,81,.16));box-shadow:inset 0 3px 0 rgba(255,255,255,.85);pointer-events:none}
+.cloud-tip:before,.cloud-tip:after{content:"";position:absolute;z-index:-1;background:inherit;border:inherit;border-radius:50%;}
+.cloud-tip:before{width:42px;height:38px;left:18px;top:-12px;border-bottom-color:transparent;border-right-color:transparent;transform:rotate(24deg)}
+.cloud-tip:after{width:47px;height:42px;right:20px;top:-13px;border-bottom-color:transparent;border-left-color:transparent;transform:rotate(-18deg)}
+.cloud-tip strong{display:block;font-family:"Fredoka",sans-serif;font-size:clamp(13px,1.25vw,17px);line-height:1.15;margin-bottom:6px;color:#9a6288}
+.cloud-tip span{display:block;position:relative}
+.cloud-tip:focus{outline:none}
+.cloud-tip-one:after{background:#fff4fa}
+.cloud-tip-two:after{background:#f7f2ff}
+.cloud-tip-three:after{background:#eafffc}
+.cloud-tip-four:after{background:#fff8df}
+.cloud-tip-two{background:linear-gradient(145deg,#fffaff 0%,#dcd2ff 100%);border-color:#b7a5fa;color:#51466f;box-shadow:inset 0 3px 0 rgba(255,255,255,.9)}
+.cloud-tip-two strong{color:#7256c4}
+.cloud-tip-three{background:linear-gradient(145deg,#f5ffff 0%,#bcefe8 100%);border-color:#80d6ce;color:#315e60;box-shadow:inset 0 3px 0 rgba(255,255,255,.9)}
+.cloud-tip-three strong{color:#238b83}
+.cloud-tip-four{background:linear-gradient(145deg,#fffef3 0%,#ffe19c 100%);border-color:#efc45e;color:#72532b;box-shadow:inset 0 3px 0 rgba(255,255,255,.9)}
+.cloud-tip-four strong{color:#a96a13}
+.cloud-tip-one{left:clamp(12px,4vw,60px);top:18%;transform:rotate(-3deg)}
+.cloud-tip-two{right:clamp(12px,4vw,60px);top:19%;transform:rotate(3deg)}
+.cloud-tip-three{left:clamp(15px,7vw,100px);bottom:9%;transform:rotate(2deg)}
+.cloud-tip-four{right:clamp(15px,7vw,100px);bottom:8%;transform:rotate(-2deg)}
+.board-welcome{gap:7px;margin-bottom:5px;text-align:center}
+.board-welcome strong{font-size:clamp(19px,2.3vw,29px);letter-spacing:.03em;color:#77535b;text-shadow:0 1px 0 #fff}
+.board-welcome span{font-size:clamp(12px,1.3vw,17px);line-height:1.15}
+.board-welcome em{font-size:clamp(11px,1.1vw,15px);line-height:1.15}
+@media(max-width:700px){
+ .cloud-tip{width:clamp(125px,38vw,175px);min-height:78px;padding:18px 12px 12px;font-size:clamp(11px,2.8vw,14px)}
+ .cloud-tip strong{font-size:clamp(11px,2.9vw,14px)}
+ .cloud-tip-one{left:2%;top:8%;transform:rotate(-3deg)}
+ .cloud-tip-two{right:2%;top:8%;transform:rotate(3deg)}
+ .cloud-tip-three{left:2%;bottom:3%;transform:rotate(2deg)}
+ .cloud-tip-four{right:2%;bottom:3%;transform:rotate(-2deg)}
+ .board-welcome strong{font-size:clamp(16px,4vw,22px)}
+ .board-welcome span{font-size:clamp(10px,2.7vw,13px)}
+ .board-welcome em{font-size:clamp(9px,2.4vw,12px)}
+}
+@media(max-width:390px){.cloud-tip{width:36vw;padding:15px 8px 10px}.cloud-tip-one,.cloud-tip-two{top:5%}.cloud-tip-three,.cloud-tip-four{bottom:2%}}
+
 </style>
 </head>
 <body>
@@ -324,9 +478,16 @@ textarea.shake{animation:shake .4s}
 
   <!-- 2 · start -->
   <section class="screen" id="s2">
+    <div class="cloud-tip cloud-tip-one"><strong>☁ Pick your favorite!</strong><span>Choose a cute card design to get started.</span></div>
+    <div class="cloud-tip cloud-tip-two"><strong>✍️ Make it yours</strong><span>Add your own words, then try different fonts and colors.</span></div>
+    <div class="cloud-tip cloud-tip-three"><strong>💌 Share a little love</strong><span>Birthdays, thank-yous, love notes or just-because surprises!</span></div>
+    <div class="cloud-tip cloud-tip-four"><strong>✨ Preview &amp; save</strong><span>Check your creation, then download it using the available option.</span></div>
     <div class="cat-anchor"><div class="cat" data-cat>
       <img class="cat-img" alt="An orange cat holding up a blank sign" draggable="false">
-      <div class="board"><div class="face"><button class="bbtn" id="btnSelect" type="button">Select Card</button></div></div>
+      <div class="board"><div class="face">
+        <div class="board-welcome"><strong>WELCOME! ♡</strong><span>Your little corner for cute cards &amp; heartfelt words.</span><em>Choose a card and make someone smile ✨</em></div>
+        <button class="bbtn" id="btnSelect" type="button">Make a Card ✨</button>
+      </div></div>
     </div></div>
   </section>
 
@@ -367,6 +528,35 @@ textarea.shake{animation:shake .4s}
               <button class="chip" type="button" role="radio" data-font="hand" aria-checked="true">Handwritten</button>
               <button class="chip" type="button" role="radio" data-font="serif" aria-checked="false">Elegant</button>
               <button class="chip" type="button" role="radio" data-font="fun" aria-checked="false">Playful</button>
+              <button class="chip" type="button" role="radio" data-font="pacifico" aria-checked="false">Sweet Script</button>
+              <button class="chip" type="button" role="radio" data-font="patrick" aria-checked="false">Notebook</button>
+              <button class="chip" type="button" role="radio" data-font="nunito" aria-checked="false">Soft Round</button>
+              <button class="chip" type="button" role="radio" data-font="quicksand" aria-checked="false">Minimal</button>
+              <button class="chip" type="button" role="radio" data-font="dmserif" aria-checked="false">Bookish</button>
+              <button class="chip" type="button" role="radio" data-font="greatvibes" aria-checked="false">Calligraphy</button>
+              <button class="chip" type="button" role="radio" data-font="sacramento" aria-checked="false">Signature</button>
+              <button class="chip" type="button" role="radio" data-font="comfortaa" aria-checked="false">Bubble</button>
+              <button class="chip" type="button" role="radio" data-font="baloo" aria-checked="false">Chubby</button>
+              <button class="chip" type="button" role="radio" data-font="amatic" aria-checked="false">Tall & Cute</button>
+              <button class="chip" type="button" role="radio" data-font="libre" aria-checked="false">Classic</button>
+            </div>
+            <div class="color-tools" aria-label="Text color picker">
+              <div class="color-heading"><span>♡ Text color</span><small id="colorName">Chocolate</small></div>
+              <div class="color-swatches" role="group" aria-label="Choose text color">
+                <button class="color-swatch" type="button" data-color="#3b2a2a" data-color-name="Chocolate" style="background:#3b2a2a" aria-label="Chocolate" aria-pressed="true"></button>
+                <button class="color-swatch" type="button" data-color="#d95782" data-color-name="Rose pink" style="background:#d95782" aria-label="Rose pink" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#a85e83" data-color-name="Mauve" style="background:#a85e83" aria-label="Mauve" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#8b70bd" data-color-name="Lilac" style="background:#8b70bd" aria-label="Lilac" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#5e67ad" data-color-name="Periwinkle" style="background:#5e67ad" aria-label="Periwinkle" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#4c8b87" data-color-name="Sage teal" style="background:#4c8b87" aria-label="Sage teal" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#63865c" data-color-name="Sage green" style="background:#63865c" aria-label="Sage green" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#e7a23d" data-color-name="Honey" style="background:#e7a23d" aria-label="Honey" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#e77d61" data-color-name="Peach" style="background:#e77d61" aria-label="Peach" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#26334a" data-color-name="Midnight blue" style="background:#26334a" aria-label="Midnight blue" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#ffffff" data-color-name="White" style="background:#ffffff" aria-label="White" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#222222" data-color-name="Black" style="background:#222222" aria-label="Black" aria-pressed="false"></button>
+                <label class="custom-color" title="Choose any custom color" aria-label="Choose a custom text color"><input type="color" id="customTextColor" value="#3b2a2a" aria-label="Custom text color"></label>
+              </div>
             </div>
             <div class="actions"><button class="btn primary" id="toPhoto" type="button">Enter</button></div>
           </div>
@@ -424,7 +614,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ================= state machine ================= */
-const state = { step: 1, sub: 'ask', tpl: null, message: '', font: 'hand', photo: null, photoURL: '', cardURL: '', cardBlob: null, filter: 'all', busy: false };
+const state = { step: 1, sub: 'ask', tpl: null, message: '', font: 'hand', textColor: '#3b2a2a', photo: null, photoURL: '', cardURL: '', cardBlob: null, filter: 'all', busy: false };
 const STEP_PIP = { 2: 0, 3: 0, 4: 1, 5: 2, 6: 3, 7: 4 };
 const timers = new Set();
 const later = (fn, ms) => { const t = setTimeout(() => { timers.delete(t); fn(); }, ms); timers.add(t); return t; };
@@ -503,18 +693,27 @@ function toast(msg, ms = 2600) {
   clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), ms);
 }
 const FONTS = {
-  hand:  { fam: '"Caveat", "Segoe Print", "Bradley Hand", cursive', css: 'normal 700', scale: 1.18 },
+  hand: { fam: '"Caveat", "Segoe Print", "Bradley Hand", cursive', css: 'normal 700', scale: 1.18 },
   serif: { fam: '"Playfair Display", Georgia, "Times New Roman", serif', css: 'italic 500', scale: 0.92 },
-  fun:   { fam: '"Fredoka", "Trebuchet MS", system-ui, sans-serif', css: 'normal 500', scale: 1 }
+  fun: { fam: '"Fredoka", "Trebuchet MS", system-ui, sans-serif', css: 'normal 500', scale: 1 },
+  pacifico: { fam: '"Pacifico", cursive', css: 'normal 400', scale: .9 },
+  patrick: { fam: '"Patrick Hand", cursive', css: 'normal 400', scale: 1.05 },
+  nunito: { fam: '"Nunito", sans-serif', css: 'normal 700', scale: 1 },
+  quicksand: { fam: '"Quicksand", sans-serif', css: 'normal 600', scale: .96 },
+  dmserif: { fam: '"DM Serif Display", serif', css: 'normal 400', scale: .92 },
+  greatvibes: { fam: '"Great Vibes", cursive', css: 'normal 400', scale: .84 },
+  sacramento: { fam: '"Sacramento", cursive', css: 'normal 400', scale: .95 },
+  comfortaa: { fam: '"Comfortaa", sans-serif', css: 'normal 600', scale: .92 },
+  baloo: { fam: '"Baloo 2", sans-serif', css: 'normal 600', scale: 1 },
+  amatic: { fam: '"Amatic SC", cursive', css: 'normal 700', scale: 1.1 },
+  libre: { fam: '"Libre Baskerville", serif', css: 'italic 400', scale: .88 }
 };
 async function loadFonts() {
   if (!document.fonts || !document.fonts.load) return;
   try {
     await Promise.race([
       Promise.all([
-        document.fonts.load('700 40px "Caveat"'),
-        document.fonts.load('italic 500 40px "Playfair Display"'),
-        document.fonts.load('500 40px "Fredoka"')
+        ...Object.values(FONTS).map(f => document.fonts.load(`${f.css} 40px ${f.fam.split(',')[0]}`))
       ]),
       new Promise(r => setTimeout(r, 2500))
     ]);
@@ -624,7 +823,7 @@ async function renderCard(canvas, longSide, opts = {}) {
     const fit = fitText(ctx, text, f, box, Math.max(W, H) * 0.095);
     ctx.font = `${f.css} ${fit.size}px ${f.fam}`;
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillStyle = t.ink; ctx.globalAlpha = raw ? 1 : 0.5;
+    ctx.fillStyle = opts.textColor || state.textColor || t.ink; ctx.globalAlpha = raw ? 1 : 0.5;
     const total = fit.lines.length * fit.lh;
     let y = box.y + (box.h - total) / 2 + fit.lh / 2;
     fit.lines.forEach(line => { ctx.fillText(line, box.x + box.w / 2, y); y += fit.lh; });
@@ -690,6 +889,15 @@ msgEl.addEventListener('input', () => {
   $('#hintMsg').textContent = 'Your card updates as you type.'; schedulePreview();
 });
 $$('.fonts .chip').forEach(c => c.addEventListener('click', () => { state.font = c.dataset.font; setFontChips(); schedulePreview(); }));
+function setTextColor(color, name) {
+  state.textColor = color;
+  $$('.color-swatch').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.color.toLowerCase() === color.toLowerCase())));
+  $('#colorName').textContent = name || 'Custom color';
+  $('#customTextColor').value = color;
+  schedulePreview();
+}
+$$('.color-swatch').forEach(c => c.addEventListener('click', () => setTextColor(c.dataset.color, c.dataset.colorName)));
+$('#customTextColor').addEventListener('input', e => setTextColor(e.target.value, 'Custom color'));
 $('#changeCard').addEventListener('click', () => goTo(3));
 function submitMessage() {
   if (!msgEl.value.trim()) {
