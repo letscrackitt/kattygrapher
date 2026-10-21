@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kattygrapher.gold24cc.workers.dev/sitemap.xml
