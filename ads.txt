@@ -1,0 +1,3 @@
+# Replace pub-XXXXXXXXXXXXXXXX with your AdSense publisher ID (digits only, after "pub-").
+# Google shows you this exact line inside your AdSense account. Keep the file named ads.txt in your site root.
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
