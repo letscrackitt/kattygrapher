@@ -184,6 +184,8 @@ button,input,textarea{font:inherit;color:inherit}
 @keyframes pulse{50%{transform:scale(1.05)}}
 .face .photo{max-width:100%; max-height:176px; border:7px solid #fff; border-bottom-width:20px; border-radius:4px; box-shadow:0 5px 12px rgba(0,0,0,.3); transform:rotate(-2deg); animation:pop .5s cubic-bezier(.22,1.3,.36,1) both; background:#fff}
 .face .final{width:100%; height:100%; object-fit:contain; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,.35); cursor:zoom-in; animation:pop .6s .35s cubic-bezier(.22,1.3,.36,1) both}
+/* Portrait cards keep their own aspect ratio and use the full height of the cat's screen. */
+.face .final.is-tall{width:auto;height:100%;max-width:100%;object-fit:contain;justify-self:center;}
 
 /* dock (button bar that sits over the lower part of the cat) */
 .dock{
@@ -483,6 +485,10 @@ body{display:flex;flex-direction:column}
 #docOverlay .doc .cta{text-align:center;margin:1.8em 0 .3em}
 #docOverlay .doc form label{display:block;font-weight:600;margin:12px 0 4px}
 #docOverlay .doc form input,#docOverlay .doc form select,#docOverlay .doc form textarea{width:100%;font:inherit;color:#3a2113;background:#fffdf7;border:3px solid var(--edge);border-radius:12px;padding:10px 12px}
+
+#dock5{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+#dock5 .btn{max-width:100%;font-size:.88rem}
+#face5 .sub{display:block;margin-top:8px}
 </style>
 <link rel="canonical" href="https://YOURDOMAIN.COM/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E">
@@ -655,7 +661,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ================= state machine ================= */
-const state = { step: 1, sub: 'ask', tpl: null, message: '', font: 'hand', textColor: '#3b2a2a', photo: null, photoURL: '', cardURL: '', cardBlob: null, filter: 'all', busy: false };
+const state = { step: 1, sub: 'ask', tpl: null, message: '', font: 'hand', textColor: '#3b2a2a', photo: null, photoURL: '', photoMode: 'snapshot', cardURL: '', cardBlob: null, filter: 'all', busy: false };
 const STEP_PIP = { 2: 0, 3: 0, 4: 1, 5: 2, 6: 3, 7: 4 };
 const timers = new Set();
 const later = (fn, ms) => { const t = setTimeout(() => { timers.delete(t); fn(); }, ms); timers.add(t); return t; };
@@ -838,15 +844,28 @@ async function renderCard(canvas, longSide, opts = {}) {
   ctx.fillStyle = '#fff8ec'; ctx.fillRect(0, 0, W, H);
   const ox = iw0 * pad * sc, oy = iw0 * pad * sc, iw = iw0 * sc, ih = ih0 * sc;
   ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(bg, ox, oy, iw, ih);
+  const photo = opts.photo === undefined ? state.photo : opts.photo;
+  const photoMode = opts.photoMode || state.photoMode || 'snapshot';
+  if (photo && photoMode === 'background') {
+    // Fill the entire card with the user's image, cropping gently to the card's aspect ratio.
+    const scale = Math.max(W / photo.naturalWidth, H / photo.naturalHeight);
+    const dw = photo.naturalWidth * scale, dh = photo.naturalHeight * scale;
+    ctx.drawImage(photo, (W - dw) / 2, (H - dh) / 2, dw, dh);
+    // A soft translucent panel keeps the message readable without hiding the photo.
+    const panelX = ox + iw0 * 0.08 * sc, panelY = oy + ih0 * 0.24 * sc;
+    const panelW = iw - iw0 * 0.16 * sc, panelH = ih * 0.52;
+    ctx.save(); ctx.fillStyle = 'rgba(255,250,247,0.78)';
+    roundRect(ctx, panelX, panelY, panelW, panelH, Math.min(28 * sc, panelH * 0.12)); ctx.fill(); ctx.restore();
+  } else {
+    ctx.drawImage(bg, ox, oy, iw, ih);
+  }
   const s = t.safe;
   const safe = { x: ox + s[0] * iw, y: oy + s[1] * ih, w: s[2] * iw, h: s[3] * ih };
-  const photo = opts.photo === undefined ? state.photo : opts.photo;
   const raw = (opts.text !== undefined ? opts.text : state.message).trim();
   const text = raw || (opts.placeholder || '');
   const f = FONTS[opts.font || state.font];
   let textBox = safe, photoBox = null;
-  if (photo) {
+  if (photo && photoMode !== 'background') {
     if (safe.w / safe.h >= 1.45) {
       const pw = safe.w * 0.4;
       photoBox = { x: safe.x, y: safe.y, w: pw, h: safe.h };
@@ -970,13 +989,18 @@ function renderS5() {
     $('#file5', lab).addEventListener('change', onFile);
   } else if (state.sub === 'preview') {
     const im = new Image(); im.className = 'photo'; im.alt = 'Your uploaded photo'; im.src = state.photoURL; face.appendChild(im);
+    const modeNote = document.createElement('span'); modeNote.className = 'sub';
+    modeNote.textContent = state.photoMode === 'background' ? 'Photo will fill the whole card background' : 'Photo will appear as a snapshot on the card';
+    face.appendChild(modeNote);
+    const bgMode = btn('USE AS BACKGROUND', state.photoMode === 'background' ? 'primary' : 'ghost', () => { state.photoMode = 'background'; renderS5(); });
+    const snapMode = btn('USE AS SNAPSHOT', state.photoMode === 'snapshot' ? 'primary' : 'ghost', () => { state.photoMode = 'snapshot'; renderS5(); });
     const lab = document.createElement('label'); lab.className = 'btn ghost';
     lab.innerHTML = '<span>Change image</span><input class="sr" type="file" accept="image/*" id="file5">';
-    dock.append(btn('GENERATE CARD', 'primary big', () => goTo(6)), lab);
+    dock.append(bgMode, snapMode, btn('GENERATE CARD', 'primary big', () => goTo(6)), lab);
     $('#file5', lab).addEventListener('change', onFile);
   } else if (state.sub === 'confirm') {
     q('Are you sure?<span class="sub">Your card will be text only</span>');
-    dock.append(btn('YES', 'primary big', () => { state.photo = null; state.photoURL = ''; state.sub = 'ready'; renderS5(); }),
+    dock.append(btn('YES', 'primary big', () => { state.photo = null; state.photoURL = ''; state.photoMode = 'snapshot'; state.sub = 'ready'; renderS5(); }),
                 btn('NO', 'ghost big', () => { state.sub = 'ask'; renderS5(); }));
   } else if (state.sub === 'ready') {
     q('All set!<span class="sub">Ready to make your card</span>');
@@ -1022,6 +1046,7 @@ async function startWorking() {
 function showFinal() {
   const face = $('#face7'); face.textContent = '';
   const im = new Image(); im.className = 'final'; im.alt = 'Your finished cat card'; im.src = state.cardURL; im.tabIndex = 0; im.setAttribute('role', 'button');
+  im.addEventListener('load', () => { if (im.naturalHeight > im.naturalWidth) im.classList.add('is-tall'); });
   im.addEventListener('click', openLightbox);
   im.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(); } });
   face.appendChild(im); layoutBoards();
@@ -1056,7 +1081,7 @@ $('#btnDownload').addEventListener('click', async () => {
   toast('Downloading your card… (if nothing happens, tap the card and save the image)', 4200);
 });
 $('#btnAgain').addEventListener('click', () => {
-  state.tpl = null; state.message = ''; state.photo = null; state.photoURL = ''; state.sub = 'ask'; state.filter = 'all';
+  state.tpl = null; state.message = ''; state.photo = null; state.photoURL = ''; state.photoMode = 'snapshot'; state.sub = 'ask'; state.filter = 'all';
   $$('.tabs .chip').forEach((x, i) => x.setAttribute('aria-pressed', String(i === 0)));
   goTo(2);
 });
